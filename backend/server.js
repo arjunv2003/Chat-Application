@@ -14,7 +14,10 @@ dotenv.config();
 connectDB();
 app.use(express.json()); // To support JSON-encoded bodies
 // Allow Multiple Origins (3000 and 5173)
-const allowedOrigins = ["http://localhost:3000", "http://localhost:5173"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://chat-application-nine-jade.vercel.app/",
+];
 
 app.use(
   cors({
@@ -168,7 +171,6 @@ const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
     origin: [
-      "http://localhost:3000",
       "http://localhost:5173",
       "https://chat-application-nine-jade.vercel.app/",
     ],
