@@ -10,12 +10,15 @@ const MyChats = () => {
 
   const fetchChats = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/chat", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        "https://chat-application-1795.onrender.com/api/chat",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
 
       const data = await response.json();
       setChats(data);

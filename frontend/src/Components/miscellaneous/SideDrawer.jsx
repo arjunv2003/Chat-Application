@@ -126,7 +126,7 @@ const SideDrawer = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:5001/api/user?search=${search}`,
+        `https://chat-application-1795.onrender.com/api/user?search=${search}`,
         {
           method: "GET",
           headers: {
@@ -146,14 +146,17 @@ const SideDrawer = () => {
 
   const accessChat = async (userId) => {
     try {
-      const response = await fetch("http://localhost:5001/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({ userId }),
-      });
+      const response = await fetch(
+        "https://chat-application-1795.onrender.com/api/chat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({ userId }),
+        }
+      );
 
       const data = await response.json();
 

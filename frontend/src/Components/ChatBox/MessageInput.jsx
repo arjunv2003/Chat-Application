@@ -65,17 +65,20 @@ const MessageInput = ({ selectedChat, user, onSendMessage, socket }) => {
         });
       }
 
-      const response = await fetch("http://localhost:5001/api/message", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({
-          content: newMessage,
-          chatId: selectedChat._id,
-        }),
-      });
+      const response = await fetch(
+        "https://chat-application-1795.onrender.com/api/message",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({
+            content: newMessage,
+            chatId: selectedChat._id,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to send message");

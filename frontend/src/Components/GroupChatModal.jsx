@@ -21,7 +21,7 @@ const GroupChatModal = ({ onClose }) => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:5001/api/user?search=${query}`,
+        `https://chat-application-1795.onrender.com/api/user?search=${query}`,
         {
           method: "GET",
           headers: {
@@ -59,17 +59,20 @@ const GroupChatModal = ({ onClose }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5001/api/chat/group", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({
-          name: groupChatName,
-          users: JSON.stringify(selectedUsers.map((u) => u._id)),
-        }),
-      });
+      const response = await fetch(
+        "https://chat-application-1795.onrender.com/api/chat/group",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({
+            name: groupChatName,
+            users: JSON.stringify(selectedUsers.map((u) => u._id)),
+          }),
+        }
+      );
 
       const data = await response.json();
 

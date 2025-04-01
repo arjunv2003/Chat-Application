@@ -18,7 +18,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/user?search=${searchUsers}`,
+        `https://chat-application-1795.onrender.com/api/user?search=${searchUsers}`,
         {
           method: "GET",
           headers: {
@@ -56,7 +56,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/chat/groupremove`,
+        `https://chat-application-1795.onrender.com/api/chat/groupremove`,
         {
           method: "PUT",
           headers: {
@@ -92,17 +92,20 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5001/api/chat/groupadd`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({
-          chatId: chat._id,
-          userId: selectedUsersToAdd,
-        }),
-      });
+      const response = await fetch(
+        `https://chat-application-1795.onrender.com/api/chat/groupadd`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({
+            chatId: chat._id,
+            userId: selectedUsersToAdd,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -129,7 +132,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/chat/groupremove`,
+        `https://chat-application-1795.onrender.com/api/chat/groupremove`,
         {
           method: "PUT",
           headers: {
@@ -163,17 +166,20 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5001/api/chat/rename`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({
-          chatId: chat._id,
-          chatName: groupName,
-        }),
-      });
+      const response = await fetch(
+        `https://chat-application-1795.onrender.com/api/chat/rename`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({
+            chatId: chat._id,
+            chatName: groupName,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

@@ -73,16 +73,19 @@ const Signup = ({ setIsLogin }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5001/api/user", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          pic: profileImage || "",
-        }),
-      });
+      const response = await fetch(
+        "https://chat-application-1795.onrender.com/api/user",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            pic: profileImage || "",
+          }),
+        }
+      );
 
       const data = await response.json();
 

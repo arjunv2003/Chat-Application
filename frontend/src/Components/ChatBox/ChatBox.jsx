@@ -6,7 +6,7 @@ import MessageInput from "./MessageInput";
 import GroupChatDetailsModal from "./GroupChatDetailsModal";
 import io from "socket.io-client";
 
-const ENDPOINT = "http://localhost:5001";
+const ENDPOINT = "https://chat-application-1795.onrender.com";
 
 const ChatBox = () => {
   const { selectedChat, setSelectedChat, user, setChats, addNotification } =
@@ -30,7 +30,7 @@ const ChatBox = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:5001/api/message/${selectedChat._id}`,
+        `https://chat-application-1795.onrender.com/api/message/${selectedChat._id}`,
         {
           method: "GET",
           headers: {

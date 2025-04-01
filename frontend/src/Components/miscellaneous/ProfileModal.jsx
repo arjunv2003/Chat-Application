@@ -39,17 +39,20 @@ const ProfileModal = ({ onClose }) => {
   const handleSave = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5001/api/user/profile`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({
-          name,
-          pic,
-        }),
-      });
+      const response = await fetch(
+        `https://chat-application-1795.onrender.com/api/user/profile`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({
+            name,
+            pic,
+          }),
+        }
+      );
 
       const updatedUser = await response.json();
 
