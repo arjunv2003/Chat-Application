@@ -17,6 +17,7 @@ app.use(express.json()); // To support JSON-encoded bodies
 const allowedOrigins = [
   "http://localhost:5173",
   "https://chat-application-nine-jade.vercel.app",
+  "https://chat-application-arjunv2003s-projects.vercel.app",
 ];
 
 app.use(
@@ -56,6 +57,7 @@ const io = new Server(server, {
     origin: [
       "http://localhost:5173",
       "https://chat-application-nine-jade.vercel.app",
+      "https://chat-application-arjunv2003s-projects.vercel.app",
     ],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
