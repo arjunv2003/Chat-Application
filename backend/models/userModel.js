@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema(
     pic: {
       type: String,
       default:
-        "https://iconarchive.com/download/i107284/Flat-User-Interface-Icons/User-Profile-2.ico",
+        "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg",
     },
   },
   {
