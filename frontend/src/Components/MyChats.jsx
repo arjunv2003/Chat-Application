@@ -41,8 +41,8 @@ const MyChats = () => {
 
   return (
     <div
-      className={`md:w-[30%] bg-white border-r ${
-        selectedChat ? "hidden md:block" : "block"
+      className={`md:w-[30%] bg-white border-r flex flex-col h-full ${
+        selectedChat ? "hidden md:flex" : "flex"
       }`}
     >
       {/* My Chats Heading with Plus Button */}
@@ -56,7 +56,7 @@ const MyChats = () => {
         </button>
       </div>
 
-      <div className="p-3 space-y-2">
+      <div className="p-3 space-y-2 overflow-y-auto flex-1">
         {chats.map((chat) => (
           <div
             key={chat._id}
