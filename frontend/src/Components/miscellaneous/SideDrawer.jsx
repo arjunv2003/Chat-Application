@@ -190,7 +190,7 @@ const SideDrawer = () => {
             className="flex items-center text-gray-600 hover:text-gray-900"
           >
             <MagnifyingGlassIcon className="h-6 w-6 mr-2" />
-            <span className="hidden md:block">Search Users</span>
+            <span className="hidden md:block">Search & add users</span>
           </button>
         </div>
 
@@ -293,7 +293,7 @@ const SideDrawer = () => {
           ></div>
 
           {/* Drawer Content */}
-          <div className="relative w-96 bg-white shadow-xl ml-auto h-full">
+          <div className="relative w-96 bg-white shadow-xl mr-auto h-full">
             <div className="p-6">
               {/* Drawer Header */}
               <div className="flex justify-between items-center mb-6">
