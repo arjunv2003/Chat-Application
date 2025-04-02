@@ -87,7 +87,7 @@ const GroupChatModal = ({ onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      className="fixed inset-0 backdrop-blur-md bg-opacity-50 flex items-center justify-center z-50"
       onClick={(e) => {
         // Close modal only if clicking on the overlay
         if (e.target === e.currentTarget) {
@@ -100,7 +100,10 @@ const GroupChatModal = ({ onClose }) => {
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
       >
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold">Create Group Chat</h2>
+          {/* <h2 className="text-2xl font-bold">Create Group Chat</h2> */}
+          <h4 className="text-3xl font-thin text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 font-[Poppins] drop-shadow-md">
+            Create Group Chat
+          </h4>
           <button
             onClick={onClose}
             className="text-gray-600 hover:text-gray-900"

@@ -197,7 +197,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      className="fixed inset-0 backdrop-blur-md bg-opacity-50 flex items-center justify-center z-50"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           onClose();
@@ -210,7 +210,10 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
       >
         {/* Modal Header */}
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold">Group Details</h2>
+          {/* <h2 className="text-2xl font-bold">Group Details</h2> */}
+          <h2 className="text-3xl font-thin text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 font-[Poppins] drop-shadow-md">
+            Group Details
+          </h2>
           <button
             onClick={onClose}
             className="text-gray-600 hover:text-gray-900"
@@ -364,7 +367,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
           {/* Leave Group Button */}
           <button
             onClick={handleLeaveGroup}
-            className="w-full mt-4 bg-yellow-500 text-white p-2 rounded flex items-center justify-center"
+            className="w-full mt-4 bg-red-500 text-white p-2 rounded flex items-center justify-center"
           >
             Leave Group
           </button>

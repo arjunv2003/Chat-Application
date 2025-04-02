@@ -47,7 +47,10 @@ const MyChats = () => {
     >
       {/* My Chats Heading with Plus Button */}
       <div className="p-4 bg-gray-100 flex justify-between items-center">
-        <h2 className="text-2xl font-bold">My Chats</h2>
+        {/* <h2 className="text-2xl font-bold">My Chats</h2> */}
+        <h4 className="text-3xl font-thin text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 font-[Poppins] drop-shadow-md">
+          My Chats
+        </h4>
         <button
           onClick={() => setIsGroupChatModalOpen(true)}
           className="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition"

@@ -15,7 +15,7 @@ import {
 const ProfileModal = ({ user, onClose }) => {
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      className="fixed inset-0 backdrop-blur-md bg-opacity-50 flex items-center justify-center z-50"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           onClose();
@@ -27,7 +27,9 @@ const ProfileModal = ({ user, onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold">My Profile</h2>
+          <h2 className="text-3xl font-thin text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 font-[Poppins] drop-shadow-md">
+            My Profile
+          </h2>
           <button
             onClick={onClose}
             className="text-gray-600 hover:text-gray-900"
@@ -184,7 +186,7 @@ const SideDrawer = () => {
     <>
       <div className="bg-white shadow-md flex justify-between items-center p-4">
         {/* Search Button */}
-        <div className="flex items-center">
+        {/* <div className="flex items-center">
           <button
             onClick={() => setIsSearchDrawerOpen(true)}
             className="flex items-center text-gray-600 hover:text-gray-900"
@@ -192,16 +194,28 @@ const SideDrawer = () => {
             <MagnifyingGlassIcon className="h-6 w-6 mr-2" />
             <span className="hidden md:block">Search & add users</span>
           </button>
+        </div> */}
+        <div className="flex items-center">
+          <button
+            onClick={() => setIsSearchDrawerOpen(true)}
+            className="flex items-center px-4 py-2 rounded-md border border-gray-300 text-gray-700 font-medium transition-all duration-200 hover:border-gray-500 hover:text-black hover:bg-gray-100"
+          >
+            <MagnifyingGlassIcon className="h-6 w-6 mr-2" />
+            <span className="hidden md:block">Search & Add Users</span>
+          </button>
         </div>
 
         {/* App Title */}
-        <h1 className="text-2xl font-bold">Chat App</h1>
+        {/* <h1 className="text-2xl font-bold ">Chat Up 👻</h1> */}
+        <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 font-[Poppins] drop-shadow-lg">
+          <span>Chat Up</span> <span className="text-white">👻</span>
+        </h1>
 
         {/* User Actions */}
         <div className="flex items-center space-x-4">
           {/* Notification Button */}
           <div className="relative" ref={notificationRef}>
-            <button
+            {/* <button
               onClick={() =>
                 setIsNotificationDropdownOpen(!isNotificationDropdownOpen)
               }
@@ -217,7 +231,26 @@ const SideDrawer = () => {
                   {notification.length}
                 </span>
               )}
+            </button> */}
+
+            <button
+              onClick={() =>
+                setIsNotificationDropdownOpen(!isNotificationDropdownOpen)
+              }
+              className="relative group"
+            >
+              {notification.length > 0 ? (
+                <BellAlertIcon className="h-6 w-6 text-red-500 relative top-1 animate-bounce group-hover:animate-none transition-transform duration-200" />
+              ) : (
+                <BellIcon className="h-6 w-6 text-gray-600 relative top-1 hover:text-black transition-colors duration-200" />
+              )}
+              {notification.length > 0 && (
+                <span className="absolute -top-1.5 -right-2 bg-red-500 text-white rounded-full h-5 w-5 flex items-center justify-center text-xs font-bold animate-pulse">
+                  {notification.length}
+                </span>
+              )}
             </button>
+
             {isNotificationDropdownOpen && (
               <div className="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg z-10">
                 {notification.length === 0 ? (
@@ -297,7 +330,10 @@ const SideDrawer = () => {
             <div className="p-6">
               {/* Drawer Header */}
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Search Users</h2>
+                {/* <h2 className="text-2xl font-bold">Search Users</h2> */}
+                <h2 className="text-3xl font-thin text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 font-[Poppins] drop-shadow-md">
+                  Search Users
+                </h2>
                 <button
                   onClick={() => setIsSearchDrawerOpen(false)}
                   className="text-gray-600 hover:text-gray-900"
