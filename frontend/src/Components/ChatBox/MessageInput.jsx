@@ -62,10 +62,61 @@ const MessageInput = ({ selectedChat, user, onSendMessage, socket }) => {
     }
   };
 
+  // const handleSendMessage = async (e) => {
+  //   e.preventDefault();
+
+  //   if (!newMessage.trim()) return;
+
+  //   try {
+  //     // Stop typing when sending message
+  //     if (socket) {
+  //       socket.emit("stop typing", {
+  //         chatId: selectedChat._id,
+  //         userId: user._id,
+  //       });
+  //     }
+
+  //     const response = await fetch(
+  //       "https://chat-application-1795.onrender.com/api/message",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${user.token}`,
+  //         },
+  //         body: JSON.stringify({
+  //           content: newMessage,
+  //           chatId: selectedChat._id,
+  //         }),
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error("Failed to send message");
+  //     }
+
+  //     const data = await response.json();
+
+  //     // Call parent component's send message handler
+  //     onSendMessage(data);
+
+  //     // Clear input
+  //     setNewMessage("");
+  //   } catch (error) {
+  //     console.error("Error sending message:", error);
+  //   }
+  // };
+
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
     if (!newMessage.trim()) return;
+
+    // Capture the current message
+    const messageToSend = newMessage;
+
+    // Immediately clear the input box
+    setNewMessage("");
 
     try {
       // Stop typing when sending message
@@ -85,7 +136,7 @@ const MessageInput = ({ selectedChat, user, onSendMessage, socket }) => {
             Authorization: `Bearer ${user.token}`,
           },
           body: JSON.stringify({
-            content: newMessage,
+            content: messageToSend,
             chatId: selectedChat._id,
           }),
         }
@@ -97,16 +148,14 @@ const MessageInput = ({ selectedChat, user, onSendMessage, socket }) => {
 
       const data = await response.json();
 
-      // Call parent component's send message handler
+      // Call parent component's send message handler only with server response
       onSendMessage(data);
-
-      // Clear input
-      setNewMessage("");
     } catch (error) {
       console.error("Error sending message:", error);
+      // Optionally, handle error (e.g., show error message, restore input)
+      setNewMessage(messageToSend);
     }
   };
-
   const toggleEmojiPicker = () => {
     setShowEmojiPicker(!showEmojiPicker);
     // Focus on input when emoji picker is toggled
