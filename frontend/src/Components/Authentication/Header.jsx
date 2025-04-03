@@ -44,7 +44,7 @@ const Header = () => {
           </a>
 
           <a
-            href="https://github.com/yourusername/chatup"
+            href="https://github.com/arjunv2003"
             target="_blank"
             rel="noreferrer"
             className="text-[#EBE8DB] hover:text-white transition-colors"
