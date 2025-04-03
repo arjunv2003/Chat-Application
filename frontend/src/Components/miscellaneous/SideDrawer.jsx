@@ -588,6 +588,7 @@ const SideDrawer = () => {
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
     if (confirmLogout) {
+      setSelectedChat(null);
       localStorage.removeItem("userInfo");
       navigate("/");
     }
