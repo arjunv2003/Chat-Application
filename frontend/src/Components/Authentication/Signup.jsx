@@ -153,7 +153,7 @@ const Signup = ({ setIsLogin }) => {
             placeholder="Enter your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
+            // required
             className="w-full pl-8 pr-3 py-2 text-xs border-2 border-[#EBE8DB] bg-white rounded-lg focus:outline-none focus:border-[#D76C82] transition-colors"
           />
         </div>
@@ -177,7 +177,7 @@ const Signup = ({ setIsLogin }) => {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
+            // required
             className="w-full pl-8 pr-3 py-2 text-xs border-2 border-[#EBE8DB] bg-white rounded-lg focus:outline-none focus:border-[#D76C82] transition-colors"
           />
         </div>
@@ -205,7 +205,7 @@ const Signup = ({ setIsLogin }) => {
               placeholder="Create a strong password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
+              // required
               className="w-full pl-8 pr-8 py-2 text-xs border-2 border-[#EBE8DB] bg-white rounded-lg focus:outline-none focus:border-[#D76C82] transition-colors"
             />
             <button
@@ -273,7 +273,7 @@ const Signup = ({ setIsLogin }) => {
             placeholder="Confirm your password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            required
+            // required
             className="w-full pl-8 pr-3 py-2 text-xs border-2 border-[#EBE8DB] bg-white rounded-lg focus:outline-none focus:border-[#D76C82] transition-colors"
           />
           {password !== confirmPassword && confirmPassword.length > 0 && (
