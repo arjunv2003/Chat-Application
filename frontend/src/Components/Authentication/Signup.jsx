@@ -113,11 +113,11 @@ const Signup = ({ setIsLogin }) => {
 
   return (
     <>
-      <div className="text-center mb-3">
+      <div className="text-center mb-6">
         <div className="inline-block bg-[#B03052] p-1.5 rounded-full mb-2 shadow-lg">
           <span className="text-2xl">👻</span>
         </div>
-        <h2 className="text-xl font-bold text-[#B03052]">Join Chat Up</h2>
+        <h2 className="text-xl font-bold text-[#B03052]">Join ChatUp</h2>
         <p className="text-xs text-[#D76C82] mt-0.5">
           Create your account and start chatting
         </p>
@@ -284,7 +284,7 @@ const Signup = ({ setIsLogin }) => {
         </div>
 
         {/* Profile Picture Upload - Simplified */}
-        <div className="bg-[#EBE8DB] bg-opacity-30 p-2 rounded-lg">
+        <div className="bg-[#ffffff] bg-opacity-30 p-2 rounded-lg">
           <div className="flex items-center space-x-2">
             <div className="flex-shrink-0">
               {profileImage ? (

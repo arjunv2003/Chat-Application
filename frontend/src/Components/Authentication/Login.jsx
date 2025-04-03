@@ -68,7 +68,7 @@ const Login = ({ setIsLogin }) => {
           <span className="text-3xl">👻</span>
         </div>
         <h2 className="text-2xl sm:text-3xl font-bold text-[#B03052]">
-          Welcome to Chat Up
+          Welcome to ChatUp
         </h2>
         <p className="text-sm sm:text-base text-[#D76C82] mt-1">
           Connect with friends, anytime, anywhere
