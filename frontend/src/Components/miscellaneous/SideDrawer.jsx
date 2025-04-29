@@ -11,6 +11,9 @@ import {
 } from "@heroicons/react/24/outline";
 import getBaseUrl from "../../Url";
 import ProfileModal from "./ProfileModal";
+
+import { toast } from "react-toastify";
+
 const SideDrawer = () => {
   const navigate = useNavigate();
   const {
@@ -76,7 +79,7 @@ const SideDrawer = () => {
 
   const handleSearch = async () => {
     if (!search) {
-      alert("Please enter a name or email");
+      toast.error("Please enter a name or email");
       return;
     }
 

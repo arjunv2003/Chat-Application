@@ -5,7 +5,7 @@ import "./App.css";
 import ChatPage from "./pages/ChatPage";
 import HomePage from "./pages/HomePage";
 import { ChatState } from "./Context/ChatProvider";
-
+import { ToastContainer } from "react-toastify";
 const App = () => {
   const { loading } = ChatState();
 
@@ -18,10 +18,13 @@ const App = () => {
   }
 
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/chats" element={<ChatPage />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/chats" element={<ChatPage />} />
+      </Routes>
+      <ToastContainer />
+    </>
   );
 };
 

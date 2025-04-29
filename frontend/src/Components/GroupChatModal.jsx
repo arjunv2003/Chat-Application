@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ChatState } from "../Context/ChatProvider";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import getBaseUrl from "../Url";
+import { toast } from "react-toastify";
 const GroupChatModal = ({ onClose }) => {
   const [groupChatName, setGroupChatName] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
@@ -51,7 +52,7 @@ const GroupChatModal = ({ onClose }) => {
 
   const handleSubmit = async () => {
     if (!groupChatName || selectedUsers.length === 0) {
-      alert("Please fill all fields");
+      toast.error("Please fill all fields");
       return;
     }
 
