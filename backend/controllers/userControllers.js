@@ -2,7 +2,6 @@ import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../config/generateToken.js";
 
-// ✅ User authentication (Login)
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -93,5 +92,4 @@ const updateProfile = asyncHandler(async (req, res) => {
   }
 });
 
-// ✅ Export functions properly
 export { authUser, registerUser, allUsers, updateProfile };
