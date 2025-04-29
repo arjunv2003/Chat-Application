@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { PencilIcon } from "@heroicons/react/24/outline";
+import { PencilIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChatState } from "../../Context/ChatProvider";
-import getBaseUrl from "../../Url";
+import getBaseUrl, { baseUrl } from "../../Url";
+
 const ProfileModal = ({ onClose }) => {
   const { user, setUser } = ChatState();
   const [isEditing, setIsEditing] = useState(false);
@@ -26,20 +27,19 @@ const ProfileModal = ({ onClose }) => {
           body: formData,
         }
       );
-
       const data = await res.json();
       setPic(data.secure_url);
-      setLoading(false);
     } catch (err) {
       console.error("Upload failed", err);
+    } finally {
       setLoading(false);
     }
   };
-
   const handleSave = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${getBaseUrl()}/user/profile`, {
+
+      const response = await fetch(`${baseUrl()}/user/updateProfile`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -53,49 +53,60 @@ const ProfileModal = ({ onClose }) => {
 
       const updatedUser = await response.json();
 
-      // Update local storage and context
       const updatedUserInfo = {
         ...user,
         name: updatedUser.name,
         pic: updatedUser.pic,
+        token: updatedUser.token, // important if token is refreshed
       };
 
       localStorage.setItem("userInfo", JSON.stringify(updatedUserInfo));
       setUser(updatedUserInfo);
-
-      // Close editing mode
       setIsEditing(false);
-      setLoading(false);
     } catch (error) {
       console.error("Profile update failed", error);
+    } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-xl shadow-2xl w-96 p-6 relative">
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
-        >
-          ✕
-        </button>
+    <div
+      className="fixed inset-0 backdrop-blur-md bg-opacity-50 flex items-center justify-center z-50"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div
+        className="bg-[#EBE8DB] rounded-lg p-8 w-96 max-w-md shadow-2xl border-2 border-[#D76C82]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex justify-between items-center mb-6">
+          <h2
+            className="text-3xl font-bold text-[#8A0032] drop-shadow-sm"
+            style={{ fontFamily: "'Underdog', cursive" }}
+          >
+            Your Profile
+          </h2>
+          <button
+            onClick={onClose}
+            className="text-[#3D0301] hover:text-[#8A0032] transition-colors"
+          >
+            <XMarkIcon className="h-6 w-6" />
+          </button>
+        </div>
 
-        {/* Profile Content */}
         <div className="flex flex-col items-center">
-          {/* Profile Picture */}
-          <div className="relative">
+          <div className="relative mb-6">
             <img
               src={pic || "https://via.placeholder.com/150"}
               alt={name}
-              className="h-32 w-32 rounded-full object-cover border-4 border-gray-200 mb-4"
+              className="h-36 w-36 rounded-full object-cover border-4 border-[#D76C82] shadow-lg"
             />
             {isEditing && (
               <label
                 htmlFor="profile-pic-upload"
-                className="absolute bottom-0 right-0 bg-blue-500 text-white rounded-full p-2 cursor-pointer"
+                className="absolute bottom-0 right-0 bg-[#D76C82] text-white rounded-full p-2 cursor-pointer"
               >
                 <PencilIcon className="h-5 w-5" />
                 <input
@@ -110,29 +121,33 @@ const ProfileModal = ({ onClose }) => {
             )}
           </div>
 
-          {/* Name Display/Edit */}
           {isEditing ? (
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="text-xl font-semibold text-center border rounded px-2 py-1 mb-2"
+              className="text-xl font-semibold text-center border rounded px-3 py-1 mb-2 text-[#8A0032] border-[#D76C82] focus:outline-none"
               disabled={loading}
+              style={{ fontFamily: "'Underdog', cursive" }}
             />
           ) : (
-            <h3 className="text-xl font-semibold">{name}</h3>
+            <h3
+              className="text-2xl font-semibold text-[#8A0032] mb-1"
+              style={{ fontFamily: "'Underdog', cursive" }}
+            >
+              {name}
+            </h3>
           )}
 
-          <p className="text-gray-600 mb-4">{user.email}</p>
+          <p className="text-[#B03052] text-lg">{user.email}</p>
 
-          {/* Action Buttons */}
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 mt-6">
             {isEditing ? (
               <>
                 <button
                   onClick={handleSave}
                   disabled={loading}
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
+                  className="bg-[#8A0032] text-white px-4 py-2 rounded hover:bg-[#6c0027] transition-colors disabled:opacity-50"
                 >
                   {loading ? "Saving..." : "Save"}
                 </button>
@@ -151,7 +166,7 @@ const ProfileModal = ({ onClose }) => {
             ) : (
               <button
                 onClick={() => setIsEditing(true)}
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center"
+                className="bg-[#D76C82] text-white px-4 py-2 rounded hover:bg-[#b2586c] transition-colors flex items-center"
               >
                 <PencilIcon className="h-5 w-5 mr-2" />
                 Edit Profile

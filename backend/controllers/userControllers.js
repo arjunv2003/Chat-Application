@@ -70,5 +70,28 @@ const allUsers = asyncHandler(async (req, res) => {
   const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
   res.send(users);
 });
+const updateProfile = asyncHandler(async (req, res) => {
+  const { name, pic } = req.body;
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    if (name) user.name = name;
+    if (pic) user.pic = pic;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      pic: updatedUser.pic,
+      token: generateToken(updatedUser._id),
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 // ✅ Export functions properly
-export { authUser, registerUser, allUsers };
+export { authUser, registerUser, allUsers, updateProfile };

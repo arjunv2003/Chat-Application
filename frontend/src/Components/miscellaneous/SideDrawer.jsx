@@ -10,55 +10,7 @@ import {
   BellAlertIcon,
 } from "@heroicons/react/24/outline";
 import getBaseUrl from "../../Url";
-// Profile Modal component with premium styling
-const ProfileModal = ({ user, onClose }) => {
-  return (
-    <div
-      className="fixed inset-0 backdrop-blur-md bg-opacity-50 flex items-center justify-center z-50"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          onClose();
-        }
-      }}
-    >
-      <div
-        className="bg-[#EBE8DB] rounded-lg p-8 w-96 max-w-md shadow-2xl border-2 border-[#D76C82]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex justify-between items-center mb-6">
-          <h2
-            className="text-3xl font-bold text-[#8A0032] drop-shadow-sm"
-            style={{ fontFamily: "'Underdog', cursive" }}
-          >
-            Your Profile
-          </h2>
-          <button
-            onClick={onClose}
-            className="text-[#3D0301] hover:text-[#8A0032] transition-colors"
-          >
-            <XMarkIcon className="h-6 w-6" />
-          </button>
-        </div>
-
-        <div className="flex flex-col items-center">
-          <img
-            src={user.pic}
-            alt={user.name}
-            className="h-36 w-36 rounded-full object-cover mb-6 border-4 border-[#D76C82] shadow-lg"
-          />
-          <h3
-            className="text-2xl font-semibold text-[#8A0032] mb-1"
-            style={{ fontFamily: "'Underdog', cursive" }}
-          >
-            {user.name}
-          </h3>
-          <p className="text-[#B03052] text-lg">{user.email}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
+import ProfileModal from "./ProfileModal";
 const SideDrawer = () => {
   const navigate = useNavigate();
   const {
