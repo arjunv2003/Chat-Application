@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
+import getBaseUrl from "../../Url";
 
 const Login = ({ setIsLogin }) => {
   const navigate = useNavigate();
@@ -28,14 +29,11 @@ const Login = ({ setIsLogin }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        "https://chat-application-1795.onrender.com/api/user/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await fetch(`${getBaseUrl()}/user/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
       const data = await response.json();
 

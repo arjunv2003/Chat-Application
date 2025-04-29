@@ -6,6 +6,7 @@ import React, {
   useCallback,
 } from "react";
 
+import getBaseUrl from "../Url";
 const ChatContext = createContext();
 
 const ChatProvider = ({ children }) => {
@@ -25,15 +26,12 @@ const ChatProvider = ({ children }) => {
     }
 
     try {
-      const response = await fetch(
-        "https://chat-application-1795.onrender.com/api/chat",
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-          },
-        }
-      );
+      const response = await fetch(`${getBaseUrl()}/chat`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      });
 
       if (!response.ok) {
         throw new Error("Failed to fetch chats");
