@@ -103,7 +103,7 @@ const GroupChatModal = ({ onClose }) => {
           </h2>
           <button
             onClick={onClose}
-            className="text-[#3D0301] hover:text-[#8A0032] transition-colors"
+            className="text-[#3D0301] hover:text-[#8A0032] cursor-pointer transition-colors"
             aria-label="Close modal"
           >
             <XMarkIcon className="h-6 w-6" />
