@@ -129,7 +129,7 @@ const Login = ({ setIsLogin }) => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-[#D76C82]"
+              className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-[#D76C82] hover:cursor-pointer"
             >
               {showPassword ? (
                 <svg
@@ -167,7 +167,7 @@ const Login = ({ setIsLogin }) => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`w-full text-white py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
+          className={`w-full text-white py-2 rounded-lg font-medium text-sm transition-all duration-300 hover:cursor-pointer ${
             isLoading
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-[#B03052] hover:bg-[#3D0301] shadow-md"
@@ -219,7 +219,7 @@ const Login = ({ setIsLogin }) => {
             onClick={handleGuestCredentials}
             className="w-full flex items-center justify-center py-2 px-3 border-2 border-[#EBE8DB] rounded-lg hover:bg-[#EBE8DB] transition-colors group text-xs"
           >
-            <span className="text-[#B03052] font-medium group-hover:text-[#3D0301]">
+            <span className="text-[#B03052] font-medium group-hover:text-[#3D0301] hover:cursor-pointer">
               Try with Guest Account
             </span>
           </button>
@@ -230,7 +230,7 @@ const Login = ({ setIsLogin }) => {
         New to Chat Up?{" "}
         <button
           onClick={() => setIsLogin(false)}
-          className="text-[#B03052] font-medium hover:underline"
+          className="text-[#B03052] font-medium hover:underline hover:cursor-pointer"
         >
           Create an account
         </button>

@@ -90,7 +90,7 @@ const ProfileModal = ({ onClose }) => {
           </h2>
           <button
             onClick={onClose}
-            className="text-[#3D0301] hover:text-[#8A0032] transition-colors"
+            className="text-[#3D0301] hover:text-[#8A0032] cursor-pointer transition-colors"
           >
             <XMarkIcon className="h-6 w-6" />
           </button>
@@ -147,7 +147,7 @@ const ProfileModal = ({ onClose }) => {
                 <button
                   onClick={handleSave}
                   disabled={loading}
-                  className="bg-[#8A0032] text-white px-4 py-2 rounded hover:bg-[#6c0027] transition-colors disabled:opacity-50"
+                  className="bg-[#8A0032] text-white px-4 py-2 rounded hover:bg-[#6c0027] cursor-pointer transition-colors disabled:opacity-50"
                 >
                   {loading ? "Saving..." : "Save"}
                 </button>
@@ -158,7 +158,7 @@ const ProfileModal = ({ onClose }) => {
                     setPic(user.pic);
                   }}
                   disabled={loading}
-                  className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 disabled:opacity-50"
+                  className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 cursor-pointer disabled:opacity-50"
                 >
                   Cancel
                 </button>
@@ -166,7 +166,7 @@ const ProfileModal = ({ onClose }) => {
             ) : (
               <button
                 onClick={() => setIsEditing(true)}
-                className="bg-[#D76C82] text-white px-4 py-2 rounded hover:bg-[#b2586c] transition-colors flex items-center"
+                className="bg-[#D76C82] text-white px-4 py-2 rounded hover:bg-[#b2586c] cursor-pointer transition-colors flex items-center"
               >
                 <PencilIcon className="h-5 w-5 mr-2" />
                 Edit Profile

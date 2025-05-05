@@ -147,7 +147,7 @@ const SideDrawer = () => {
               setSearch("");
               setSearchResult([]);
             }}
-            className="flex items-center px-4 py-2.5 rounded-full bg-[#8A0032] text-[#EBE8DB] font-medium transition-all duration-200 hover:shadow-lg hover:opacity-90"
+            className="flex items-center px-4 py-2.5 rounded-full bg-[#8A0032] text-[#EBE8DB] font-medium transition-all duration-200 hover:shadow-lg hover:opacity-90 hover:cursor-pointer"
           >
             <MagnifyingGlassIcon className="h-5 w-5 md:mr-2" />
             <span className="hidden md:block">Find Friends</span>
@@ -170,7 +170,7 @@ const SideDrawer = () => {
               onClick={() =>
                 setIsNotificationDropdownOpen(!isNotificationDropdownOpen)
               }
-              className="relative p-2 hover:bg-[#EBE8DB] hover:bg-opacity-30 rounded-full transition-colors"
+              className="relative p-2 hover:bg-[#EBE8DB] hover:bg-opacity-30 rounded-full transition-colors hover:cursor-pointer"
             >
               {notification.length > 0 ? (
                 <BellAlertIcon className="h-6 w-6 text-[#3D0301]" />
@@ -239,7 +239,7 @@ const SideDrawer = () => {
                 className="absolute right-0 mt-2 w-56 bg-[#EBE8DB] border-2 border-[#D76C82] rounded-lg shadow-xl z-10 overflow-hidden"
               >
                 <button
-                  className="flex items-center w-full px-4 py-3 text-left text-[#EBE8DB] bg-[#8A0032] hover:bg-opacity-90 transition-colors"
+                  className="flex items-center w-full px-4 py-3 text-left text-[#EBE8DB] bg-[#8A0032] hover:bg-opacity-90 transition-colors hover:cursor-pointer"
                   onClick={() => {
                     setIsProfileModalOpen(true);
                     setIsDropdownOpen(false);
@@ -249,7 +249,7 @@ const SideDrawer = () => {
                   <span className="font-medium">Your Profile</span>
                 </button>
                 <button
-                  className="flex items-center w-full px-4 py-3 text-left text-[#EBE8DB] bg-[#8A0032] hover:bg-opacity-90 transition-opacity"
+                  className="flex items-center w-full px-4 py-3 text-left text-[#EBE8DB] bg-[#8A0032] hover:bg-opacity-90 transition-opacity hover:cursor-pointer"
                   onClick={handleLogout}
                 >
                   <ArrowRightStartOnRectangleIcon className="h-5 w-5 mr-3" />

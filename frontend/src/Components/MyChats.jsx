@@ -52,7 +52,7 @@ const MyChats = () => {
         </h2>
         <button
           onClick={() => setIsGroupChatModalOpen(true)}
-          className="bg-[#8A0032] text-[#EBE8DB] p-2 rounded-full hover:bg-opacity-90 transition-all duration-200 hover:shadow-lg"
+          className="bg-[#8A0032] text-[#EBE8DB] p-2 rounded-full hover:bg-opacity-90 transition-all duration-200 hover:shadow-lg hover:cursor-pointer"
           title="Create Group Chat"
         >
           <PlusIcon className="h-5 w-5" />

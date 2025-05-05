@@ -206,7 +206,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
           </h2>
           <button
             onClick={onClose}
-            className="text-[#3D0301] hover:text-[#8A0032] transition-colors p-1 rounded-full hover:bg-[#D76C82] hover:bg-opacity-20"
+            className="text-[#3D0301] hover:text-[#8A0032] transition-colors p-1 rounded-full hover:bg-[#D76C82] hover:bg-opacity-20 cursor-pointer"
           >
             <XMarkIcon className="h-6 w-6" />
           </button>
@@ -228,7 +228,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
             {chat.groupAdmin._id === user._id && (
               <button
                 onClick={handleUpdateGroupName}
-                className="bg-[#8A0032] text-[#EBE8DB] px-4 rounded-r-md hover:bg-opacity-90 transition-colors"
+                className="bg-[#8A0032] text-[#EBE8DB] px-4 rounded-r-md hover:bg-opacity-90 cursor-pointer transition-colors "
               >
                 Update
               </button>
@@ -255,7 +255,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
               />
               <button
                 onClick={handleSearchUsers}
-                className="bg-[#8A0032] text-[#EBE8DB] px-4 rounded-r-md hover:bg-opacity-90 transition-colors"
+                className="bg-[#8A0032] text-[#EBE8DB] px-4 rounded-r-md hover:bg-opacity-90 cursor-pointer transition-colors"
               >
                 Search
               </button>
@@ -301,7 +301,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
             {selectedUsersToAdd.length > 0 && (
               <button
                 onClick={handleAddUsers}
-                className="w-full mt-3 bg-[#8A0032] text-[#EBE8DB] p-2 rounded-md flex items-center justify-center hover:bg-opacity-90 transition-colors"
+                className="w-full mt-3 bg-[#8A0032] text-[#EBE8DB] p-2 rounded-md flex items-center justify-center hover:bg-opacity-90 cursor-pointer transition-colors"
               >
                 <PlusIcon className="h-5 w-5 mr-2" />
                 Add {selectedUsersToAdd.length} User
@@ -367,7 +367,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
             selectedUsersToRemove.length > 0 && (
               <button
                 onClick={handleRemoveUsers}
-                className="w-full mb-4 bg-[#8A0032] text-[#EBE8DB] p-2.5 rounded-md flex items-center justify-center hover:bg-opacity-90 transition-colors"
+                className="w-full mb-4 bg-[#8A0032] text-[#EBE8DB] p-2.5 rounded-md flex items-center justify-center hover:bg-opacity-90 cursor-pointer transition-colors"
               >
                 <TrashIcon className="h-5 w-5 mr-2" />
                 Remove {selectedUsersToRemove.length} Member
@@ -378,7 +378,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
           {/* Leave Group Button */}
           <button
             onClick={handleLeaveGroup}
-            className="w-full mt-4 bg-[#8A0032] text-[#EBE8DB] p-2.5 rounded-md flex items-center justify-center hover:bg-opacity-90 transition-colors"
+            className="w-full mt-4 bg-[#8A0032] text-[#EBE8DB] p-2.5 rounded-md flex items-center justify-center hover:bg-opacity-90 cursor-pointer transition-colors"
           >
             Leave Group
           </button>

@@ -208,7 +208,7 @@ const Signup = ({ setIsLogin }) => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-[#D76C82]"
+              className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-[#D76C82] hover:cursor-pointer"
             >
               {showPassword ? (
                 <svg
@@ -381,7 +381,7 @@ const Signup = ({ setIsLogin }) => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`w-full text-white py-2 rounded-lg font-medium text-sm transition-all duration-300 ${
+          className={`w-full text-white py-2 rounded-lg font-medium text-sm transition-all duration-300 hover:cursor-pointer ${
             isLoading
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-[#B03052] hover:bg-[#3D0301] shadow-md"
@@ -422,7 +422,7 @@ const Signup = ({ setIsLogin }) => {
         Already have an account?{" "}
         <button
           onClick={() => setIsLogin(true)}
-          className="text-[#B03052] font-medium hover:underline"
+          className="text-[#B03052] font-medium hover:underline hover:cursor-pointer"
         >
           Sign In
         </button>

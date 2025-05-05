@@ -204,7 +204,7 @@ const GroupChatModal = ({ onClose }) => {
           {/* Create Button */}
           <button
             onClick={handleSubmit}
-            className="w-full bg-[#8A0032] text-[#EBE8DB] p-3 rounded-lg mt-2 hover:bg-opacity-90 transition-all duration-200 font-medium shadow-md"
+            className="w-full bg-[#8A0032] text-[#EBE8DB] p-3 rounded-lg mt-2 hover:bg-opacity-90 transition-all duration-200 font-medium shadow-md hover:cursor-pointer"
             style={{ fontFamily: "'Underdog', cursive" }}
           >
             Create Group

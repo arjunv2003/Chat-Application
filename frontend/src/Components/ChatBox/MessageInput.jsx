@@ -136,7 +136,7 @@ const MessageInput = ({ selectedChat, user, onSendMessage, socket }) => {
           <button
             type="button"
             onClick={toggleEmojiPicker}
-            className="text-[#8A0032] hover:text-[#3D0301] transition-colors p-1.5 sm:p-2 rounded-full hover:bg-[#D76C82] hover:bg-opacity-20 flex-shrink-0"
+            className="text-[#8A0032] hover:text-[#3D0301] transition-colors p-1.5 sm:p-2 rounded-full hover:bg-[#D76C82] hover:bg-opacity-20 flex-shrink-0 hover:cursor-pointer"
             aria-label="Open emoji picker"
           >
             <FaceSmileIcon className="h-5 w-5" />

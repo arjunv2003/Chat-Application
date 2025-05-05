@@ -58,7 +58,7 @@ const ChatHeader = ({ selectedChat, user, onDetailsClick, onBackClick }) => {
       {selectedChat.isGroupChat && (
         <button
           onClick={onDetailsClick}
-          className="text-[#3D0301] hover:text-[#8A0032] transition-colors p-2 rounded-full hover:bg-[#D76C82] hover:bg-opacity-20"
+          className="text-[#3D0301] hover:text-[#8A0032] transition-colors p-2 rounded-full hover:bg-[#D76C82] hover:bg-opacity-20 cursor-pointer"
           aria-label="View group details"
           title="View group details"
         >
