@@ -146,7 +146,7 @@ const MessageInput = ({ selectedChat, user, onSendMessage, socket }) => {
           {showEmojiPicker && (
             <div
               ref={emojiPickerRef}
-              className="absolute bottom-full left-0 mb-2 z-50"
+              className="absolute bottom-full left-5 mb-2 z-50"
               style={{
                 maxWidth: "calc(100vw - 20px)",
                 transform: "translateX(-10%)",
