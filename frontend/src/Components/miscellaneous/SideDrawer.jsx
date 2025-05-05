@@ -283,7 +283,7 @@ const SideDrawer = () => {
                 </h2>
                 <button
                   onClick={() => setIsSearchDrawerOpen(false)}
-                  className="text-[#3D0301] hover:text-[#8A0032] p-2 rounded-full hover:bg-[#D76C82] hover:bg-opacity-20 transition-all"
+                  className="text-[#3D0301] hover:text-[#8A0032] p-2 rounded-full hover:bg-[#D76C82] hover:bg-opacity-20 cursor-pointer transition-all"
                 >
                   <XMarkIcon className="h-6 w-6" />
                 </button>
@@ -301,7 +301,7 @@ const SideDrawer = () => {
                 <button
                   onClick={handleSearch}
                   disabled={loading}
-                  className="px-5 py-3 bg-[#8A0032] text-[#EBE8DB] rounded-r-lg hover:opacity-90 disabled:opacity-50 transition-opacity font-medium"
+                  className="px-5 py-3 bg-[#8A0032] text-[#EBE8DB] rounded-r-lg hover:opacity-90 cursor-pointer disabled:opacity-50 transition-opacity font-medium"
                 >
                   {loading ? "Searching..." : "Search"}
                 </button>
