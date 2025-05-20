@@ -21,7 +21,7 @@ const Header = () => {
 
         <div className="flex space-x-3 items-center">
           <a
-            href="https://arjunkanth-portfolio.netlify.app/"
+            href="https://arjunkanths-portfolio.netlify.app/"
             target="_blank"
             rel="noreferrer"
             className="text-[#EBE8DB] hover:text-white transition-colors flex items-center"
