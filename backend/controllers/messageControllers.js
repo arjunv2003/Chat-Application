@@ -50,4 +50,64 @@ const allMessages = asyncHandler(async (req, res) => {
   }
 });
 
-export { sendMessage, allMessages };
+const deleteMessage = asyncHandler(async (req, res) => {
+  const { messageId } = req.params;
+
+  if (!messageId) {
+    return res.status(400).json({ message: "Message ID is required" });
+  }
+
+  try {
+    // Find the message first
+    const message = await Message.findById(messageId).populate("chat");
+
+    if (!message) {
+      return res.status(404).json({ message: "Message not found" });
+    }
+
+    // Check if the user is the sender of the message or admin of the group
+    const chat = message.chat;
+    const isOwner = message.sender.toString() === req.user._id.toString();
+    const isGroupAdmin =
+      chat.isGroupChat &&
+      chat.groupAdmin.toString() === req.user._id.toString();
+    const isParticipant = chat.users.includes(req.user._id);
+
+    if (!isOwner && !isGroupAdmin) {
+      return res.status(403).json({
+        message:
+          "You can only delete your own messages or you must be group admin",
+      });
+    }
+
+    if (!isParticipant) {
+      return res
+        .status(403)
+        .json({ message: "You are not a participant in this chat" });
+    }
+
+    // Delete the message
+    await Message.findByIdAndDelete(messageId);
+
+    // Update latestMessage if this was the latest message
+    if (chat.latestMessage && chat.latestMessage.toString() === messageId) {
+      const newLatestMessage = await Message.findOne({ chat: chat._id }).sort({
+        createdAt: -1,
+      });
+
+      await Chat.findByIdAndUpdate(chat._id, {
+        latestMessage: newLatestMessage ? newLatestMessage._id : null,
+      });
+    }
+
+    res.status(200).json({
+      message: "Message deleted successfully",
+      deletedMessageId: messageId,
+    });
+  } catch (error) {
+    res.status(500);
+    throw new Error(error.message);
+  }
+});
+
+export { sendMessage, allMessages, deleteMessage };

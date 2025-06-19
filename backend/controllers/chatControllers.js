@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
 import Chat from "../models/chatModel.js";
 import User from "../models/userModel.js";
-
+import Message from "../models/messageModel.js";
 export const accessChat = asyncHandler(async (req, res) => {
   const { userId } = req.body;
   if (!userId) {
@@ -162,6 +162,176 @@ export const removeFromGroup = asyncHandler(async (req, res) => {
   }
 });
 
+export const leaveGroup = asyncHandler(async (req, res) => {
+  const { chatId } = req.body;
+
+  if (!chatId) {
+    return res.status(400).json({ message: "Chat ID is required" });
+  }
+
+  try {
+    const chat = await Chat.findById(chatId);
+
+    if (!chat) {
+      return res.status(404).json({ message: "Chat not found" });
+    }
+
+    if (!chat.isGroupChat) {
+      return res
+        .status(400)
+        .json({ message: "Cannot leave a one-on-one chat" });
+    }
+
+    if (!chat.users.includes(req.user._id)) {
+      return res
+        .status(400)
+        .json({ message: "You are not a member of this group" });
+    }
+
+    if (
+      chat.groupAdmin.toString() === req.user._id.toString() &&
+      chat.users.length > 1
+    ) {
+      const newAdmin = chat.users.find(
+        (userId) => userId.toString() !== req.user._id.toString()
+      );
+      chat.groupAdmin = newAdmin;
+    }
+
+    const updatedChat = await Chat.findByIdAndUpdate(
+      chatId,
+      {
+        $pull: { users: req.user._id },
+        ...(chat.groupAdmin.toString() === req.user._id.toString() &&
+        chat.users.length > 1
+          ? {
+              groupAdmin: chat.users.find(
+                (userId) => userId.toString() !== req.user._id.toString()
+              ),
+            }
+          : {}),
+      },
+      { new: true }
+    )
+      .populate("users", "-password")
+      .populate("groupAdmin", "-password");
+
+    if (updatedChat.users.length === 0) {
+      await Chat.findByIdAndDelete(chatId);
+      await Message.deleteMany({ chat: chatId });
+      return res
+        .status(200)
+        .json({ message: "Group deleted as no members left" });
+    }
+
+    res.status(200).json({
+      message: "Successfully left the group",
+      chat: updatedChat,
+    });
+  } catch (error) {
+    res.status(500);
+    throw new Error(error.message);
+  }
+});
+
+export const clearChat = asyncHandler(async (req, res) => {
+  const { chatId } = req.body;
+
+  if (!chatId) {
+    return res.status(400).json({ message: "Chat ID is required" });
+  }
+
+  try {
+    // Find the chat first
+    const chat = await Chat.findById(chatId);
+
+    if (!chat) {
+      return res.status(404).json({ message: "Chat not found" });
+    }
+
+    // Check if user is a participant in the chat
+    if (!chat.users.includes(req.user._id)) {
+      return res
+        .status(403)
+        .json({ message: "You are not a participant in this chat" });
+    }
+
+    // For group chats, only admin can clear chat
+    if (
+      chat.isGroupChat &&
+      chat.groupAdmin.toString() !== req.user._id.toString()
+    ) {
+      return res
+        .status(403)
+        .json({ message: "Only group admin can clear the chat" });
+    }
+
+    // Delete all messages in the chat
+    const deletedMessages = await Message.deleteMany({ chat: chatId });
+
+    // Update the chat's latestMessage to null
+    await Chat.findByIdAndUpdate(chatId, {
+      latestMessage: null,
+    });
+
+    res.status(200).json({
+      message: "Chat cleared successfully",
+      deletedCount: deletedMessages.deletedCount,
+    });
+  } catch (error) {
+    res.status(500);
+    throw new Error(error.message);
+  }
+});
+
+export const deleteChat = asyncHandler(async (req, res) => {
+  const { chatId } = req.body;
+
+  if (!chatId) {
+    return res.status(400).json({ message: "Chat ID is required" });
+  }
+
+  try {
+    const chat = await Chat.findById(chatId);
+
+    if (!chat) {
+      return res.status(404).json({ message: "Chat not found" });
+    }
+
+    // Check permissions
+    if (chat.isGroupChat) {
+      // Only group admin can delete group chat
+      if (chat.groupAdmin.toString() !== req.user._id.toString()) {
+        return res
+          .status(403)
+          .json({ message: "Only group admin can delete the group" });
+      }
+    } else {
+      // For one-on-one chats, user must be a participant
+      if (!chat.users.includes(req.user._id)) {
+        return res
+          .status(403)
+          .json({ message: "You are not a participant in this chat" });
+      }
+    }
+
+    // Delete all messages in the chat
+    await Message.deleteMany({ chat: chatId });
+
+    // Delete the chat
+    await Chat.findByIdAndDelete(chatId);
+
+    res.status(200).json({
+      message: chat.isGroupChat
+        ? "Group deleted successfully"
+        : "Chat deleted successfully",
+    });
+  } catch (error) {
+    res.status(500);
+    throw new Error(error.message);
+  }
+});
+
 export default {
   accessChat,
   fetchChats,
@@ -169,4 +339,7 @@ export default {
   renameGroup,
   addToGroup,
   removeFromGroup,
+  leaveGroup,
+  clearChat,
+  deleteChat,
 };

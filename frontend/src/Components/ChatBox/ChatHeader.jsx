@@ -1,5 +1,8 @@
 import React from "react";
-import { EyeIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowLeftIcon,
+  EllipsisVerticalIcon,
+} from "@heroicons/react/24/outline";
 
 const ChatHeader = ({ selectedChat, user, onDetailsClick, onBackClick }) => {
   // Get user for one-to-one chat
@@ -54,15 +57,14 @@ const ChatHeader = ({ selectedChat, user, onDetailsClick, onBackClick }) => {
         </div>
       </div>
 
-      {/* Eye Icon for Details (Only for Group Chats) */}
       {selectedChat.isGroupChat && (
         <button
           onClick={onDetailsClick}
-          className="text-[#3D0301] hover:text-[#8A0032] transition-colors p-2 rounded-full hover:bg-[#D76C82] hover:bg-opacity-20 cursor-pointer"
+          className="text-[#3D0301] hover:text-[#8A0032] transition-colors p-2 rounded-full hover:bg-[#894553] hover:bg-opacity-50 cursor-pointer"
           aria-label="View group details"
           title="View group details"
         >
-          <EyeIcon className="h-5 w-5 md:h-6 md:w-6" />
+          <EllipsisVerticalIcon className="h-5 w-5 md:h-6 md:w-6" />
         </button>
       )}
     </div>
