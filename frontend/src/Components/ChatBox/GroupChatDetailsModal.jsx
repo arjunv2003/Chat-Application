@@ -125,7 +125,7 @@ const GroupChatDetailsModal = ({ chat, user, onClose, onUpdateChat }) => {
     if (!confirmLeave) return;
 
     try {
-      const response = await fetch(`${getBaseUrl()}/chat/groupremove`, {
+      const response = await fetch(`${getBaseUrl()}/chat/leave`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
